@@ -12,6 +12,15 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public Article() {
+    }
+
+    public Article(String headline, String annotation, String text) {
+        this.headline = headline;
+        this.annotation = annotation;
+        this.text = text;
+    }
+
     private String headline, annotation, text;
     private int views;
 
