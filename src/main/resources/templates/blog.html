@@ -12,6 +12,11 @@
 
 <div class="container mt-3">
     <h1>Блог</h1>
+    <div th:each = "article : ${articles}" class="alert alert-info mt-3">
+        <h3 th:text = "${article.headline}"/>
+        <p th:text = "${article.annotation}"/>
+        <a th:href = "'/blog/' + ${article.id}">Читать далее</a>
+    </div>
 </div>
 
 </body>
