@@ -12,10 +12,13 @@
 
 <div class="container mt-3">
     <h1>Блог</h1>
-    <div th:each = "article : ${articles}" class="alert alert-info mt-3">
-        <h3 th:text = "${article.headline}"/>
-        <p th:text = "${article.annotation}"/>
-        <a th:href = "'/blog/' + ${article.id}">Читать далее</a>
+    <div class="card mb-3" th:each = "article : ${articles}">
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+            <h5 class="card-title" th:text = "${article.headline}"/>
+            <p class="card-text" th:text = "${article.annotation}"/>
+            <a th:href = "'/blog/' + ${article.id}">Читать далее</a>
+        </div>
     </div>
 </div>
 
