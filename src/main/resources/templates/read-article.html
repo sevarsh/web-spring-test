@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${title}"/>
+    <style>
+        article-text {
+            width: auto;
+            display: block;
+            font-family: Georgia, serif;
+            white-space: pre-line;
+            text-align: justify;
+            margin: 1em 0;
+        }
+    </style>
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-3">
+    <div class="container" th:each = "el : ${article}">
+        <h1 th:text = "${el.headline}"/><br>
+        <h5 th:text = "${el.annotation}"/><br>
+        <article-text th:text = "${el.text}"/><br>
+        <p th:text = "'Просмотры: ' + ${el.views}"/>
+        <a th:href = "'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href = "'/blog/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
+    </div>
+</div>
+
+</body>
+</html>
