@@ -26,8 +26,10 @@
         <h5 th:text = "${el.annotation}"/><br>
         <article-text th:text = "${el.text}"/><br>
         <p th:text = "'Просмотры: ' + ${el.views}"/>
-        <a th:href = "'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href = "'/blog/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
+        <a th:href = "'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+        <form th:action = "'/blog/' + ${el.id} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
     </div>
 </div>
 

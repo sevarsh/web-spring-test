@@ -70,10 +70,19 @@ public class BlogController {
     public String updatePostArticle(@PathVariable(value = "id") long id, @RequestParam String headline,
                                     @RequestParam String annotation, @RequestParam String text, Model model) {
         Article article = articleRepo.findById(id).orElseThrow();
+        //TO DO: обработать исключение
         article.setHeadline(headline);
         article.setAnnotation(annotation);
         article.setText(text);
         articleRepo.save(article);
         return "redirect:/blog/{id}";
+    }
+
+    @PostMapping("/blog/{id}/remove")
+    public String updatePostArticle(@PathVariable(value = "id") long id, Model model) {
+        Article article = articleRepo.findById(id).orElseThrow();
+        //TO DO: обработать исключение
+        articleRepo.delete(article);
+        return "redirect:/blog";
     }
 }
