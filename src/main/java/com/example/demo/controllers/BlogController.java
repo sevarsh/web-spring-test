@@ -53,4 +53,27 @@ public class BlogController {
         model.addAttribute("title", res.get(0).getHeadline());
         return "read-article";
     }
+
+    @GetMapping("/blog/{id}/edit")
+    public String editArticle(@PathVariable(value = "id") long id, Model model) {
+        if(!articleRepo.existsById(id)) {
+            return "redirect:/blog";
+        }
+        Optional<Article> article = articleRepo.findById(id);
+        ArrayList<Article> res = new ArrayList<>();
+        article.ifPresent(res::add);
+        model.addAttribute("article", res);
+        return "edit-article";
+    }
+
+    @PostMapping("/blog/{id}/edit")
+    public String updatePostArticle(@PathVariable(value = "id") long id, @RequestParam String headline,
+                                    @RequestParam String annotation, @RequestParam String text, Model model) {
+        Article article = articleRepo.findById(id).orElseThrow();
+        article.setHeadline(headline);
+        article.setAnnotation(annotation);
+        article.setText(text);
+        articleRepo.save(article);
+        return "redirect:/blog/{id}";
+    }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Редактирование статьи</title>
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Редактирование статьи</h1>
+    <form method="post">
+        <div class="container" th:each = "el : ${article}">
+            <input th:value="${el.headline}" type="text" name="headline" placeholder="Название статьи" maxlength="255" class="form-control"><br>
+            <input th:value="${el.annotation}" type="text" name="annotation" placeholder="Аннотация (не более 255 символов)" maxlength="255" class="form-control"><br>
+            <textarea th:text="${el.text}" name="text" placeholder="Текст статьи (не более 2000 символов)" rows="20" maxlength="2000" class="form-control"></textarea><br>
+            <button type="submit" class="btn btn-success">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
